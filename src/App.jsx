@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from "react";
+import Button from "@mui/material/Button";
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import SearchBar from "./molecules/SearchBar";
+import Playlist from "./molecules/Playlist";
+import Tracklist from "./molecules/Tracklist";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchButton from "./atoms/SearchButton";
+
+const Header = () => {
+  return (
+    <Box sx={{ flexGrow: 1, justifyContent: "center", textAlign: "center" }}>
+      <AppBar position="static">
+        <Toolbar>
+          <h1
+            className="bounce"
+            style={{ margin: "1rem auto", cursor: "pointer" }}
+          >
+            Jammming
+          </h1>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Box className="appContainer">
+      <Header />
+      <Box sx={{ display: "flex", flexDirection: "column", padding: "2rem" }}>
+        <SearchBar />
+        <SearchButton />
+      </Box>
+
+      <Box className="lists">
+        <Tracklist />
+        <Playlist />
+      </Box>
+    </Box>
+  );
 }
 
-export default App
+export default App;
